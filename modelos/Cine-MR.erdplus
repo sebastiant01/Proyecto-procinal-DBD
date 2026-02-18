@@ -1,0 +1,1065 @@
+{
+  "diagramType": 2,
+  "data": {
+    "nodes": [
+      {
+        "id": "b89e8baf-582b-4c91-9374-acd140f91c89",
+        "type": "Table",
+        "position": {
+          "x": 885.2786769836002,
+          "y": 229.94892646956623
+        },
+        "data": {
+          "label": "PUNTOVENTA",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "8120b72a-321e-491d-b65a-ddcff59a6d93",
+              "name": "id_punto_venta",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "1313cb4a-218f-4445-b814-24c136ad45a3",
+              "name": "nombre",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "0a3e7ac5-d8ac-4459-be76-f7803e2a39d3",
+              "name": "direccion",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "17acc742-f5f5-482c-9511-3707b5fbaefc",
+              "name": "fk_EMPLEADO",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "d7bbffbe-4768-4c12-aafe-ffe5fc373733",
+                "sourceTableId": "e7e08e5e-da7a-4892-815c-07afb32c8d87",
+                "columns": [
+                  {
+                    "id": "fk_44dcd444-e620-47f8-b4ea-7fde985b47a0",
+                    "name": "id_empleado",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 126
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "dfe081b4-0003-4c3f-9293-f67d7eda01ec",
+        "type": "Table",
+        "position": {
+          "x": 525.6541389582279,
+          "y": 129.842928668443
+        },
+        "data": {
+          "label": "CIUDAD",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "ff0e80ad-e3fd-41d6-ab27-556d5fa7f3d1",
+              "name": "id_ciudad",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "fcbf3d88-1d51-446b-8380-48ffb9436db2",
+              "name": "nombre",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "0eaf6bfc-894f-4b33-b7a4-0bc6cad381f2",
+              "name": "zona_geografica",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "3b730825-b719-416e-a67c-8add8740f61e",
+              "name": "temperatura_media",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "bbcad62b-1ba5-4f7a-9844-466e650ce9d1",
+              "name": "fk_PUNTOVENTA",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "acc2b296-cf5b-4e32-adfe-77a18e8bea9c",
+                "sourceTableId": "b89e8baf-582b-4c91-9374-acd140f91c89",
+                "columns": [
+                  {
+                    "id": "fk_8120b72a-321e-491d-b65a-ddcff59a6d93",
+                    "name": "id_punto_venta",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 150
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "d2ba3667-a9c3-4b1e-b894-71995e66a37e",
+        "type": "Table",
+        "position": {
+          "x": 891.6786871590253,
+          "y": 461.1565735158239
+        },
+        "data": {
+          "label": "SALA",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "ac0f39d1-4182-4734-a095-caed5730f038",
+              "name": "id_sala",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "0029e59d-1096-4d44-9f20-e6b7bd3d2c13",
+              "name": "numero_sala",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "226cd88e-ff77-4fdc-b85a-ffd35f299102",
+              "name": "fk_PUNTOVENTA",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "238db9e9-c3f8-4007-87f5-f5813b3593b2",
+                "sourceTableId": "b89e8baf-582b-4c91-9374-acd140f91c89",
+                "columns": [
+                  {
+                    "id": "fk_8120b72a-321e-491d-b65a-ddcff59a6d93",
+                    "name": "id_punto_venta",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "e2240e16-a8ba-4575-ae2d-486ee5b5d423",
+              "name": "fk_PROYECCION",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "8e660c24-0444-41df-8df7-072ecb4f70b1",
+                "sourceTableId": "6bfd3560-d3ae-4931-b8df-bf4d15f1dd79",
+                "columns": [
+                  {
+                    "id": "fk_584c6e8d-2405-4dad-abfd-6e2f6f5a1d47",
+                    "name": "id_proyeccion",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false,
+          "isWeak": true
+        },
+        "measured": {
+          "width": 240,
+          "height": 126
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "e7e08e5e-da7a-4892-815c-07afb32c8d87",
+        "type": "Table",
+        "position": {
+          "x": 1273.9507096489208,
+          "y": 304.27920225475447
+        },
+        "data": {
+          "label": "EMPLEADO",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "44dcd444-e620-47f8-b4ea-7fde985b47a0",
+              "name": "id_empleado",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "b908deb7-7d10-4f80-b776-e50757fbc12c",
+              "name": "nombre",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "8c11f7d7-2ec5-4107-b44a-55760bdf45d6",
+              "name": "cedula",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "58aefcd0-3318-4c2b-8491-d13b801473c8",
+              "name": "telefono",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "87d9889e-d77e-4e75-8f26-60f7eaa26c2a",
+              "name": "cargo",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "eb5de24f-df4b-4ce3-877d-85c836605831",
+              "name": "fk_SALA",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "8d407299-c56c-4fbf-be44-28c1b43f8519",
+                "sourceTableId": "d2ba3667-a9c3-4b1e-b894-71995e66a37e",
+                "columns": [
+                  {
+                    "id": "fk_ac0f39d1-4182-4734-a095-caed5730f038",
+                    "name": "id_sala",
+                    "type": "INT"
+                  },
+                  {
+                    "id": "fk_fk_8120b72a-321e-491d-b65a-ddcff59a6d93",
+                    "name": "id_punto_venta",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 191
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "eb2d2c2a-9d4a-4af0-87d5-a9d1c54cc47f",
+        "type": "Table",
+        "position": {
+          "x": 588.845258697158,
+          "y": 790.6030388227393
+        },
+        "data": {
+          "label": "PELICULA",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "3eaddd61-2636-4757-9e3f-ad7c29dfca17",
+              "name": "id_pelicula",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "846a67f9-8375-4069-ab83-593063947877",
+              "name": "titulo",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "523dc9aa-d087-4c3a-9945-2f17ea5e9fe6",
+              "name": "genero",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "314e22de-b3de-45c1-baaf-c016bd5faf6e",
+              "name": "duracion",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "152c1649-45ee-4f91-aa3c-461fd460971a",
+              "name": "fk_PROYECCION",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "481cdde2-388f-4491-ba18-19477104cef4",
+                "sourceTableId": "6bfd3560-d3ae-4931-b8df-bf4d15f1dd79",
+                "columns": [
+                  {
+                    "id": "fk_584c6e8d-2405-4dad-abfd-6e2f6f5a1d47",
+                    "name": "id_proyeccion",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 150
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "715496c8-1be5-45bc-a025-aff923f55e6c",
+        "type": "Table",
+        "position": {
+          "x": 210.71217427260933,
+          "y": 926.0477105201677
+        },
+        "data": {
+          "label": "ACTOR",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "1ef75f0f-7425-484c-a120-39714058a795",
+              "name": "id_actor",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "69d660ed-3da7-4b8d-b7e1-71794f6651f3",
+              "name": "nombre",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "9c5fd251-57a5-4305-ac9e-20de63ef1539",
+              "name": "edad",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 100
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "40fd06ca-7813-43df-818b-cdc7bf857643",
+        "type": "Table",
+        "position": {
+          "x": 967.0877693513139,
+          "y": 831.8405315931765
+        },
+        "data": {
+          "label": "DIRECTOR",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "405c4580-49e8-483b-8ed8-84b1d3c2be21",
+              "name": "id_director",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "0a3288a7-218c-4a30-9e0f-b45ab1470723",
+              "name": "nombre",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "e1542304-0640-4774-9af9-bc2a68022d87",
+              "name": "edad",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "43c5723d-7b91-4bae-9c3a-f2a624ff167b",
+              "name": "pais_procedencia",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "55b31036-28c1-4a6f-8da8-866c11cfaa6b",
+              "name": "fk_PELICULA",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "af4019fd-e5a7-4aaa-bcbd-a21542a5e000",
+                "sourceTableId": "eb2d2c2a-9d4a-4af0-87d5-a9d1c54cc47f",
+                "columns": [
+                  {
+                    "id": "fk_3eaddd61-2636-4757-9e3f-ad7c29dfca17",
+                    "name": "id_pelicula",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 150
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "6bfd3560-d3ae-4931-b8df-bf4d15f1dd79",
+        "type": "Table",
+        "position": {
+          "x": 587.8697388896567,
+          "y": 658.4484265310572
+        },
+        "data": {
+          "label": "PROYECCION",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "584c6e8d-2405-4dad-abfd-6e2f6f5a1d47",
+              "name": "id_proyeccion",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "fbf3d13e-80f2-48a4-a13a-888bf59b5219",
+              "name": "fecha_proyeccion",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 75
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "2c10b1e9-eb0a-42f2-9a60-cb0307bd24fd",
+        "type": "Table",
+        "position": {
+          "x": 203.88807345415182,
+          "y": 568.5027129456092
+        },
+        "data": {
+          "label": "SERVICIOVIP",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "8212a2d4-223a-41ef-8548-3ba54022c8eb",
+              "name": "id_servicio",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "31926b7b-d699-472c-92fc-b9aa98f7bac5",
+              "name": "nombre_servicio",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 75
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "7f7306e2-a4e7-44c8-b0d5-b0d7c110797f",
+        "type": "Table",
+        "position": {
+          "x": 1270.642550429402,
+          "y": 112.27881569764645
+        },
+        "data": {
+          "label": "ADMINISTRADOR",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "581932a4-88b5-4076-913f-854e7819863a",
+              "name": "sueldo",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "3bd478d7-1b23-4eb4-bf49-f85c20c3a166",
+              "name": "numero_hijos",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "b1de39a0-09c2-47fc-91d1-f505daed3892",
+              "name": "fk_EMPLEADO",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "87f093c7-ffa7-438e-8276-bfef0be0b816",
+                "sourceTableId": "e7e08e5e-da7a-4892-815c-07afb32c8d87",
+                "columns": [
+                  {
+                    "id": "fk_44dcd444-e620-47f8-b4ea-7fde985b47a0",
+                    "name": "id_empleado",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isPrimaryKey": true,
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": true
+        },
+        "measured": {
+          "width": 240,
+          "height": 101
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "1dc3e7cf-9014-444c-8df4-cff9513e4871",
+        "type": "Table",
+        "position": {
+          "x": 1141.798887565978,
+          "y": 590.2345195118081
+        },
+        "data": {
+          "label": "SALA2D",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "e5fb8ba9-d1b6-40b4-b9f2-bc49ce482e97",
+              "name": "capacidad",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 50
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "dfe61b60-c50e-4500-bd65-af6ca01e75a3",
+        "type": "Table",
+        "position": {
+          "x": 937.1221082631116,
+          "y": 653.0328719213318
+        },
+        "data": {
+          "label": "SALA3D",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "8bd930f5-08eb-42b7-92b5-f6f880e2f199",
+              "name": "capacidad",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 50
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "0c0c04f1-1c3e-4981-9b3f-a1e615b03548",
+        "type": "Table",
+        "position": {
+          "x": 204.5346204721044,
+          "y": 394.40600473462376
+        },
+        "data": {
+          "label": "SALAVIP",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "05c8b181-d95f-4f88-abab-f96d586260c0",
+              "name": "costo_por_hora",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 50
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "c892b90f-f84d-485a-ae26-5134223f87d4",
+        "type": "Table",
+        "position": {
+          "x": 212.00246347667206,
+          "y": 789.7461895140179
+        },
+        "data": {
+          "label": "PROTAGONIZA",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "ba6ee7e2-f19e-48d3-94b0-5ba4ef7b0065",
+              "name": "fk_PELICULA",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "67e868b6-bedd-4361-9c79-347e813bd1e2",
+                "sourceTableId": "eb2d2c2a-9d4a-4af0-87d5-a9d1c54cc47f",
+                "columns": [
+                  {
+                    "id": "fk_3eaddd61-2636-4757-9e3f-ad7c29dfca17",
+                    "name": "id_pelicula",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "22a4f015-5bd5-4a65-9899-e4ae2648750f",
+              "name": "fk_ACTOR",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "8d0794c8-caa3-4c72-9c1c-5f50bea01516",
+                "sourceTableId": "715496c8-1be5-45bc-a025-aff923f55e6c",
+                "columns": [
+                  {
+                    "id": "fk_1ef75f0f-7425-484c-a120-39714058a795",
+                    "name": "id_actor",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isPrimaryKey": true,
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 77
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "3989e22f-7a1b-437b-a9c1-181b03b367ff",
+        "type": "Table",
+        "position": {
+          "x": 512.3189372183604,
+          "y": 461.10565928677653
+        },
+        "data": {
+          "label": "OFRECE",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "5dcfc57b-f042-4523-b687-890e25208870",
+              "name": "fk_SALAVIP",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "0e31df89-2449-495c-8e91-3c0fe4f005d5",
+                "sourceTableId": "0c0c04f1-1c3e-4981-9b3f-a1e615b03548",
+                "columns": []
+              },
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "a6b6bee9-14fb-4ddf-95b8-2a4244514c75",
+              "name": "fk_SERVICIOVIP",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "b31dcd92-5250-4517-b3cc-bac828449c8c",
+                "sourceTableId": "2c10b1e9-eb0a-42f2-9a60-cb0307bd24fd",
+                "columns": [
+                  {
+                    "id": "fk_8212a2d4-223a-41ef-8548-3ba54022c8eb",
+                    "name": "id_servicio",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isPrimaryKey": true,
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 77
+        },
+        "selected": false,
+        "dragging": false
+      }
+    ],
+    "edges": [
+      {
+        "id": "e7e08e5e-da7a-4892-815c-07afb32c8d87->b89e8baf-582b-4c91-9374-acd140f91c89_d7bbffbe-4768-4c12-aafe-ffe5fc373733",
+        "type": "Relational",
+        "source": "e7e08e5e-da7a-4892-815c-07afb32c8d87",
+        "targetHandle": "foreign-key-handle-d7bbffbe-4768-4c12-aafe-ffe5fc373733",
+        "target": "b89e8baf-582b-4c91-9374-acd140f91c89",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "d7bbffbe-4768-4c12-aafe-ffe5fc373733",
+            "sourceTableId": "e7e08e5e-da7a-4892-815c-07afb32c8d87",
+            "columns": [
+              {
+                "id": "fk_44dcd444-e620-47f8-b4ea-7fde985b47a0",
+                "name": "id_empleado",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "b89e8baf-582b-4c91-9374-acd140f91c89->dfe081b4-0003-4c3f-9293-f67d7eda01ec_acc2b296-cf5b-4e32-adfe-77a18e8bea9c",
+        "type": "Relational",
+        "source": "b89e8baf-582b-4c91-9374-acd140f91c89",
+        "targetHandle": "foreign-key-handle-acc2b296-cf5b-4e32-adfe-77a18e8bea9c",
+        "target": "dfe081b4-0003-4c3f-9293-f67d7eda01ec",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "acc2b296-cf5b-4e32-adfe-77a18e8bea9c",
+            "sourceTableId": "b89e8baf-582b-4c91-9374-acd140f91c89",
+            "columns": [
+              {
+                "id": "fk_8120b72a-321e-491d-b65a-ddcff59a6d93",
+                "name": "id_punto_venta",
+                "type": "INT"
+              }
+            ]
+          }
+        },
+        "selected": false
+      },
+      {
+        "id": "b89e8baf-582b-4c91-9374-acd140f91c89->d2ba3667-a9c3-4b1e-b894-71995e66a37e_238db9e9-c3f8-4007-87f5-f5813b3593b2",
+        "type": "Relational",
+        "source": "b89e8baf-582b-4c91-9374-acd140f91c89",
+        "targetHandle": "foreign-key-handle-238db9e9-c3f8-4007-87f5-f5813b3593b2",
+        "target": "d2ba3667-a9c3-4b1e-b894-71995e66a37e",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "238db9e9-c3f8-4007-87f5-f5813b3593b2",
+            "sourceTableId": "b89e8baf-582b-4c91-9374-acd140f91c89",
+            "columns": [
+              {
+                "id": "fk_8120b72a-321e-491d-b65a-ddcff59a6d93",
+                "name": "id_punto_venta",
+                "type": "INT"
+              }
+            ]
+          }
+        },
+        "selected": false
+      },
+      {
+        "id": "6bfd3560-d3ae-4931-b8df-bf4d15f1dd79->d2ba3667-a9c3-4b1e-b894-71995e66a37e_8e660c24-0444-41df-8df7-072ecb4f70b1",
+        "type": "Relational",
+        "source": "6bfd3560-d3ae-4931-b8df-bf4d15f1dd79",
+        "targetHandle": "foreign-key-handle-8e660c24-0444-41df-8df7-072ecb4f70b1",
+        "target": "d2ba3667-a9c3-4b1e-b894-71995e66a37e",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "8e660c24-0444-41df-8df7-072ecb4f70b1",
+            "sourceTableId": "6bfd3560-d3ae-4931-b8df-bf4d15f1dd79",
+            "columns": [
+              {
+                "id": "fk_584c6e8d-2405-4dad-abfd-6e2f6f5a1d47",
+                "name": "id_proyeccion",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "d2ba3667-a9c3-4b1e-b894-71995e66a37e->e7e08e5e-da7a-4892-815c-07afb32c8d87_8d407299-c56c-4fbf-be44-28c1b43f8519",
+        "type": "Relational",
+        "source": "d2ba3667-a9c3-4b1e-b894-71995e66a37e",
+        "targetHandle": "foreign-key-handle-8d407299-c56c-4fbf-be44-28c1b43f8519",
+        "target": "e7e08e5e-da7a-4892-815c-07afb32c8d87",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "8d407299-c56c-4fbf-be44-28c1b43f8519",
+            "sourceTableId": "d2ba3667-a9c3-4b1e-b894-71995e66a37e",
+            "columns": [
+              {
+                "id": "fk_ac0f39d1-4182-4734-a095-caed5730f038",
+                "name": "id_sala",
+                "type": "INT"
+              },
+              {
+                "id": "fk_fk_8120b72a-321e-491d-b65a-ddcff59a6d93",
+                "name": "id_punto_venta",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "6bfd3560-d3ae-4931-b8df-bf4d15f1dd79->eb2d2c2a-9d4a-4af0-87d5-a9d1c54cc47f_481cdde2-388f-4491-ba18-19477104cef4",
+        "type": "Relational",
+        "source": "6bfd3560-d3ae-4931-b8df-bf4d15f1dd79",
+        "targetHandle": "foreign-key-handle-481cdde2-388f-4491-ba18-19477104cef4",
+        "target": "eb2d2c2a-9d4a-4af0-87d5-a9d1c54cc47f",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "481cdde2-388f-4491-ba18-19477104cef4",
+            "sourceTableId": "6bfd3560-d3ae-4931-b8df-bf4d15f1dd79",
+            "columns": [
+              {
+                "id": "fk_584c6e8d-2405-4dad-abfd-6e2f6f5a1d47",
+                "name": "id_proyeccion",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "eb2d2c2a-9d4a-4af0-87d5-a9d1c54cc47f->40fd06ca-7813-43df-818b-cdc7bf857643_af4019fd-e5a7-4aaa-bcbd-a21542a5e000",
+        "type": "Relational",
+        "source": "eb2d2c2a-9d4a-4af0-87d5-a9d1c54cc47f",
+        "targetHandle": "foreign-key-handle-af4019fd-e5a7-4aaa-bcbd-a21542a5e000",
+        "target": "40fd06ca-7813-43df-818b-cdc7bf857643",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "af4019fd-e5a7-4aaa-bcbd-a21542a5e000",
+            "sourceTableId": "eb2d2c2a-9d4a-4af0-87d5-a9d1c54cc47f",
+            "columns": [
+              {
+                "id": "fk_3eaddd61-2636-4757-9e3f-ad7c29dfca17",
+                "name": "id_pelicula",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "e7e08e5e-da7a-4892-815c-07afb32c8d87->7f7306e2-a4e7-44c8-b0d5-b0d7c110797f_87f093c7-ffa7-438e-8276-bfef0be0b816",
+        "type": "Relational",
+        "source": "e7e08e5e-da7a-4892-815c-07afb32c8d87",
+        "targetHandle": "foreign-key-handle-87f093c7-ffa7-438e-8276-bfef0be0b816",
+        "target": "7f7306e2-a4e7-44c8-b0d5-b0d7c110797f",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "87f093c7-ffa7-438e-8276-bfef0be0b816",
+            "sourceTableId": "e7e08e5e-da7a-4892-815c-07afb32c8d87",
+            "columns": [
+              {
+                "id": "fk_44dcd444-e620-47f8-b4ea-7fde985b47a0",
+                "name": "id_empleado",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "eb2d2c2a-9d4a-4af0-87d5-a9d1c54cc47f->c892b90f-f84d-485a-ae26-5134223f87d4_67e868b6-bedd-4361-9c79-347e813bd1e2",
+        "type": "Relational",
+        "source": "eb2d2c2a-9d4a-4af0-87d5-a9d1c54cc47f",
+        "targetHandle": "foreign-key-handle-67e868b6-bedd-4361-9c79-347e813bd1e2",
+        "target": "c892b90f-f84d-485a-ae26-5134223f87d4",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "67e868b6-bedd-4361-9c79-347e813bd1e2",
+            "sourceTableId": "eb2d2c2a-9d4a-4af0-87d5-a9d1c54cc47f",
+            "columns": [
+              {
+                "id": "fk_3eaddd61-2636-4757-9e3f-ad7c29dfca17",
+                "name": "id_pelicula",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "715496c8-1be5-45bc-a025-aff923f55e6c->c892b90f-f84d-485a-ae26-5134223f87d4_8d0794c8-caa3-4c72-9c1c-5f50bea01516",
+        "type": "Relational",
+        "source": "715496c8-1be5-45bc-a025-aff923f55e6c",
+        "targetHandle": "foreign-key-handle-8d0794c8-caa3-4c72-9c1c-5f50bea01516",
+        "target": "c892b90f-f84d-485a-ae26-5134223f87d4",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "8d0794c8-caa3-4c72-9c1c-5f50bea01516",
+            "sourceTableId": "715496c8-1be5-45bc-a025-aff923f55e6c",
+            "columns": [
+              {
+                "id": "fk_1ef75f0f-7425-484c-a120-39714058a795",
+                "name": "id_actor",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "0c0c04f1-1c3e-4981-9b3f-a1e615b03548->3989e22f-7a1b-437b-a9c1-181b03b367ff_0e31df89-2449-495c-8e91-3c0fe4f005d5",
+        "type": "Relational",
+        "source": "0c0c04f1-1c3e-4981-9b3f-a1e615b03548",
+        "targetHandle": "foreign-key-handle-0e31df89-2449-495c-8e91-3c0fe4f005d5",
+        "target": "3989e22f-7a1b-437b-a9c1-181b03b367ff",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "0e31df89-2449-495c-8e91-3c0fe4f005d5",
+            "sourceTableId": "0c0c04f1-1c3e-4981-9b3f-a1e615b03548",
+            "columns": []
+          }
+        }
+      },
+      {
+        "id": "2c10b1e9-eb0a-42f2-9a60-cb0307bd24fd->3989e22f-7a1b-437b-a9c1-181b03b367ff_b31dcd92-5250-4517-b3cc-bac828449c8c",
+        "type": "Relational",
+        "source": "2c10b1e9-eb0a-42f2-9a60-cb0307bd24fd",
+        "targetHandle": "foreign-key-handle-b31dcd92-5250-4517-b3cc-bac828449c8c",
+        "target": "3989e22f-7a1b-437b-a9c1-181b03b367ff",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "b31dcd92-5250-4517-b3cc-bac828449c8c",
+            "sourceTableId": "2c10b1e9-eb0a-42f2-9a60-cb0307bd24fd",
+            "columns": [
+              {
+                "id": "fk_8212a2d4-223a-41ef-8548-3ba54022c8eb",
+                "name": "id_servicio",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "viewport": {
+      "x": 234.73850164337546,
+      "y": -41.65738235449794,
+      "zoom": 0.6150117201554236
+    }
+  },
+  "name": "Cine-MR",
+  "folder": {
+    "name": "Diagrams",
+    "folderType": 1,
+    "depth": 0,
+    "id": 216022
+  },
+  "id": 282008,
+  "updatedAtTimestamp": 1771341418
+}
