@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 --SECCIÓN 3: CONSULTAS Y ANÁLISIS 
 
 USE Procinal;
