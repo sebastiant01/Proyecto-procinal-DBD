@@ -1,4 +1,4 @@
-CREATE DATABASE Procinal;
+﻿CREATE DATABASE Procinal;
 GO
 
 USE Procinal;
@@ -163,3 +163,356 @@ CREATE TABLE EncargadoDe (
     FOREIGN KEY (id_empleado) REFERENCES Administrador(id_empleado),
     FOREIGN KEY (id_punto_venta) REFERENCES PuntoVenta(id_punto_venta)
 );
+
+
+-- =========================
+-- INSERCIONES DE DATOS
+-- =========================
+
+
+GO
+
+-- =========================
+-- 1. CIUDAD
+-- =========================
+
+
+INSERT INTO Ciudad (id_ciudad, nombre, zona_geografica, temperatura_media) VALUES
+( 1, 'Bogotá',        'Andina',    14),
+( 2, 'Medellín',      'Andina',    22),
+( 3, 'Cali',          'Pacífica',  24),
+( 4, 'Barranquilla',  'Caribe',    28),
+( 5, 'Cartagena',     'Caribe',    29),
+( 6, 'Bucaramanga',   'Andina',    23),
+( 7, 'Pereira',       'Andina',    21),
+( 8, 'Manizales',     'Andina',    17),
+( 9, 'Santa Marta',   'Caribe',    28),
+(10, 'Cúcuta',        'Andina',    28),
+(11, 'Ibagué',        'Andina',    21),
+(12, 'Pasto',         'Andina',    13),
+(13, 'Villavicencio', 'Orinoquía', 26),
+(14, 'Montería',      'Caribe',    27),
+(15, 'Sincelejo',     'Caribe',    27),
+(16, 'Neiva',         'Andina',    26),
+(17, 'Armenia',       'Andina',    20),
+(18, 'Popayán',       'Andina',    18),
+(19, 'Valledupar',    'Caribe',    29),
+(20, 'Tunja',         'Andina',    12),
+(21, 'Riohacha',      'Caribe',    30),  -- sin sede asignada (para LEFT JOINs)
+(22, 'Leticia',       'Amazónica', 27);  -- sin sede asignada
+
+
+-- =========================
+-- 2. PUNTO VENTA
+-- =========================
+
+
+INSERT INTO PuntoVenta (id_punto_venta, nombre, direccion, id_ciudad) VALUES
+( 1, 'Procinal Gran Estación',     'Av. Calle 26 # 62-47',        1),
+( 2, 'Procinal Andino',            'Carrera 11 # 82-71',          1),
+( 3, 'Procinal Oviedo',            'Carrera 43A # 6 Sur-15',      2),
+( 4, 'Procinal El Tesoro',         'Calle 7 Sur # 43-223',        2),
+( 5, 'Procinal Chipichape',        'Av. 6N # 23A-24',             3),
+( 6, 'Procinal Cosmocentro',       'Carrera 66 # 3-00',           3),
+( 7, 'Procinal Buenavista',        'Carrera 52 # 98-99',          4),
+( 8, 'Procinal Portal del Prado',  'Calle 72 # 57-30',            4),
+( 9, 'Procinal Caribe Plaza',      'Carrera 42 # 30-30',          5),
+(10, 'Procinal Cabecera',          'Carrera 35 # 54-50',          6),
+(11, 'Procinal Pereira Plaza',     'Carrera 13 # 15-60',          7),
+(12, 'Procinal Cable Plaza',       'Carrera 23 # 64-60',          8),
+(13, 'Procinal Buenavista SMR',    'Calle 22 # 4-76',             9),
+(14, 'Procinal Ventura Plaza',     'Av. Libertadores # 10-30',   10),
+(15, 'Procinal Unicentro Ibagué',  'Carrera 5 # 56-50',          11),
+(16, 'Procinal Campanario',        'Calle 25 # 8-60',            12),
+(17, 'Procinal Viva Villavicencio','Carrera 21 # 35-50',         13),
+(18, 'Procinal Nuestro',           'Calle 29 # 8-80',            14),
+(19, 'Procinal Neiva Plaza',       'Carrera 6 # 22-60',          16),
+(20, 'Procinal Unicentro Armenia', 'Calle 21N # 14-80',          17);
+
+
+-- =========================
+-- 3. SALA
+-- =========================
+
+
+INSERT INTO Sala (id_sala, numero_sala, id_punto_venta) VALUES
+-- 2D
+( 1,1, 1),( 2,1, 2),( 3,1, 3),( 4,1, 4),( 5,1, 5),
+( 6,1, 6),( 7,1, 7),( 8,1, 8),( 9,1, 9),(10,1,10),
+(11,1,11),(12,1,12),(13,1,13),(14,1,14),(15,1,15),
+(16,1,16),(17,1,17),(18,1,18),(19,1,19),(20,1,20),
+
+-- 3D
+(21,2, 1),(22,2, 2),(23,2, 3),(24,2, 4),(25,2, 5),
+(26,2, 6),(27,2, 7),(28,2, 8),(29,2, 9),(30,2,10),
+(31,2,11),(32,2,12),(33,2,13),(34,2,14),(35,2,15),
+(36,2,16),(37,2,17),(38,2,18),(39,2,19),(40,2,20),
+
+-- VIP
+(41,3, 1),(42,3, 2),(43,3, 3),(44,3, 4),(45,3, 5),
+(46,3, 6),(47,3, 7),(48,3, 8),(49,3, 9),(50,3,10),
+(51,3,11),(52,3,12),(53,3,13),(54,3,14),(55,3,15),
+(56,3,16),(57,3,17),(58,3,18),(59,3,19),(60,3,20);
+
+
+
+-- =========================
+-- 4. SALAS (2D, 3D, VIP)
+-- =========================
+
+-- SALA 2D
+
+INSERT INTO Sala2D (id_sala, capacidad) VALUES
+( 1,120),( 2,110),( 3,130),( 4,115),( 5,125),
+( 6,120),( 7,110),( 8,130),( 9,115),(10,120),
+(11,125),(12,110),(13,120),(14,115),(15,130),
+(16,110),(17,120),(18,115),(19,125),(20,110);
+
+-- SALA 3D
+
+INSERT INTO Sala3D (id_sala, capacidad) VALUES
+(21,100),(22, 90),(23,105),(24, 95),(25,100),
+(26, 90),(27,100),(28,105),(29, 95),(30,100),
+(31, 90),(32,100),(33, 95),(34,105),(35, 90),
+(36,100),(37, 95),(38,105),(39, 90),(40,100);
+
+-- SALA VIP
+
+INSERT INTO SalaVIP (id_sala, costo_por_hora) VALUES
+(41,80000),(42,75000),(43,90000),(44,70000),(45,85000),
+(46,80000),(47,75000),(48,90000),(49,70000),(50,85000),
+(51,80000),(52,75000),(53,90000),(54,70000),(55,85000),
+(56,80000),(57,75000),(58,90000),(59,70000),(60,85000);
+
+
+-- =========================
+-- 5. SERVICIO VIP
+-- =========================
+
+
+INSERT INTO ServicioVIP (id_servicio, nombre_servicio, id_punto_venta) VALUES
+( 1, 'Butacas reclinables',                   1),
+( 2, 'Servicio de mesero',                    2),
+( 3, 'Menú gourmet',                          3),
+( 4, 'Sonido Dolby Atmos',                    4),
+( 5, 'Pantalla 4K OLED',                      5),
+( 6, 'Cocteles con alcohol',                  6),
+( 7, 'Manta y almohada',                      7),
+( 8, 'Minibar en butaca',                     8),
+( 9, 'Estacionamiento VIP',                   9),
+(10, 'Check-in preferencial',                10),
+(11, 'WiFi exclusivo',                       11),
+(12, 'Snacks premium',                       12),
+(13, 'Sala de espera privada',               13),
+(14, 'Iluminación ambiental',               14),
+(15, 'Temperatura personalizada',           15),
+(16, 'Cargador inalámbrico en butaca',      16),
+(17, 'Silla de masajes',                    17),
+(18, 'Auriculares cancelación de ruido',    18),
+(19, 'Cocteles sin alcohol',                19),
+(20, 'Acceso a sala de juegos pre-función', 20);
+
+
+-- =========================
+-- 6. EMPLEADO
+-- =========================
+
+
+INSERT INTO Empleado (id_empleado, nombre, cedula, telefono, cargo, id_punto_venta) VALUES
+( 1,'Laura Martínez',   '1001001001','3201112233','Administrador', 1),
+( 2,'Carlos Rodríguez', '1001001002','3202223344','Cajero',        1),
+( 3,'Ana Gómez',        '1001001003','3203334455','Administrador', 2),
+( 4,'Pedro Sánchez',    '1001001004','3204445566','Operador',      2),
+( 5,'Sofía Herrera',    '1001001005','3205556677','Administrador', 3),
+( 6,'Juan Díaz',        '1001001006','3206667788','Cajero',        3),
+( 7,'Valentina López',  '1001001007','3207778899','Administrador', 4),
+( 8,'Andrés Torres',    '1001001008','3208889900','Operador',      4),
+( 9,'Daniela Vargas',   '1001001009','3209990011','Administrador', 5),
+(10,'Miguel Ríos',      '1001001010','3210001122','Cajero',        5),
+(11,'Camila Moreno',    '1001001011','3211112233','Administrador', 6),
+(12,'Santiago Castro',  '1001001012','3212223344','Operador',      6),
+(13,'Natalia Jiménez',  '1001001013','3213334455','Administrador', 7),
+(14,'Felipe Ruiz',      '1001001014','3214445566','Cajero',        7),
+(15,'Isabella Mendoza', '1001001015','3215556677','Administrador', 8),
+(16,'Sebastián Navarro','1001001016','3216667788','Operador',      8),
+(17,'Mariana Peña',     '1001001017','3217778899','Administrador', 9),
+(18,'Julián Ramírez',   '1001001018','3218889900','Cajero',        9),
+(19,'Valeria Suárez',   '1001001019','3219990011','Administrador',10),
+(20,'Tomás Álvarez',    '1001001020','3220001122','Operador',     10),
+(21,'Lucía Ortega',     '1001001021','3221112233','Administrador',11),
+(22,'Diego Flores',     '1001001022','3222223344','Cajero',       11),
+(23,'Gabriela Reyes',   '1001001023','3223334455','Administrador',12),
+(24,'Mateo Guerrero',   '1001001024','3224445566','Operador',     12),
+(25,'Sara Medina',      '1001001025','3225556677','Administrador',13),
+(26,'Andrés Castillo',  '1001001026','3226667788','Cajero',       13),
+(27,'Paola Bermúdez',   '1001001027','3227778899','Administrador',14),
+(28,'Ricardo Lozano',   '1001001028','3228889900','Operador',     14),
+(29,'Diana Ospina',     '1001001029','3229990011','Administrador',15),
+(30,'Héctor Palacios',  '1001001030','3230001122','Cajero',       15),
+(31,'Mónica Agudelo',   '1001001031','3231112233','Administrador',16),
+(32,'Esteban Cárdenas', '1001001032','3232223344','Operador',     16),
+(33,'Alejandra Muñoz',  '1001001033','3233334455','Administrador',17),
+(34,'Camilo Pedraza',   '1001001034','3234445566','Cajero',       17),
+(35,'Fernanda Cano',    '1001001035','3235556677','Administrador',18),
+(36,'Sebastián Gil',    '1001001036','3236667788','Operador',     18),
+(37,'Juliana Prada',    '1001001037','3237778899','Administrador',19),
+(38,'Nicolás Vega',     '1001001038','3238889900','Cajero',       19),
+(39,'Felipe Arango',    '1001001039','3239990011','Administrador',20),
+(40,'Daniela Quintero', '1001001040','3240001122','Operador',     20);
+
+
+-- =========================
+-- 7. ADMINISTRADOR
+-- =========================
+
+
+INSERT INTO Administrador (id_empleado, sueldo, numero_hijos) VALUES
+( 1,4800000,1),( 3,4900000,0),( 5,5100000,2),( 7,4750000,1),
+( 9,5200000,3),(11,4850000,0),(13,5000000,2),(15,4700000,1),
+(17,5300000,0),(19,4950000,2),(21,5050000,1),(23,4800000,0),
+(25,5150000,3),(27,4600000,0),(29,4650000,1),(31,4700000,2),
+(33,4550000,0),(35,4850000,1),(37,4750000,0),(39,4680000,2);
+
+
+-- =========================
+-- 8. PELICULA
+-- =========================
+
+
+INSERT INTO Pelicula (id_pelicula, titulo, genero, duracion) VALUES
+( 1, 'Inception',                'Ciencia Ficción', 148),
+( 2, 'Interstellar',             'Ciencia Ficción', 169),
+( 3, 'Jurassic Park',            'Aventura',        127),
+( 4, 'Schindler''s List',        'Drama',           195),
+( 5, 'Pulp Fiction',             'Thriller',        154),
+( 6, 'Django Unchained',         'Western',         165),
+( 7, 'The Departed',             'Crimen',          151),
+( 8, 'Avatar',                   'Ciencia Ficción', 162),
+( 9, 'Gladiator',                'Acción',          155),
+(10, 'Blade Runner 2049',        'Ciencia Ficción', 164),
+(11, 'Dune',                     'Ciencia Ficción', 155),
+(12, 'El laberinto del fauno',   'Fantasía',        118),
+(13, 'Roma',                     'Drama',           135),
+(14, 'Parásitos',                'Thriller',        132),
+(15, 'Volver',                   'Drama',           121),
+(16, 'Birdman',                  'Comedia',         119),
+(17, 'El Padrino',               'Crimen',          175),
+(18, 'Se7en',                    'Thriller',        127),
+(19, 'The Grand Budapest Hotel', 'Comedia',         100),
+(20, 'El club de la pelea',      'Thriller',        139),
+(21, 'Requiem for a Dream',      'Drama',           102),  -- sin proyecciones
+(22, 'Beetlejuice',              'Comedia',          92);  -- sin proyecciones
+
+
+-- =========================
+-- 9. ACTOR
+-- =========================
+
+
+INSERT INTO Actor (id_actor, nombre, edad) VALUES
+( 1, 'Leonardo DiCaprio',   49),
+( 2, 'Cillian Murphy',      48),
+( 3, 'Uma Thurman',         54),
+( 4, 'Jamie Foxx',          56),
+( 5, 'Jeff Goldblum',       72),
+( 6, 'Liam Neeson',         72),
+( 7, 'Russell Crowe',       60),
+( 8, 'Ryan Gosling',        43),
+( 9, 'Timothée Chalamet',   29),
+(10, 'Doug Jones',          64),
+(11, 'Cate Blanchett',      55),
+(12, 'Song Kang-ho',        57),
+(13, 'Marlon Brando',       80),
+(14, 'Brad Pitt',           61),
+(15, 'Edward Norton',       55),
+(16, 'Tom Hanks',           68),
+(17, 'Meryl Streep',        75),
+(18, 'Michael Keaton',      73),
+(19, 'Ralph Fiennes',       62),
+(20, 'Matt Damon',          53);
+
+
+-- =========================
+-- 10. DIRECTOR
+-- =========================
+
+
+INSERT INTO Director (id_director, nombre, edad, pais_procedencia) VALUES
+( 1, 'Christopher Nolan',     54,   'Reino Unido'),
+( 2, 'Steven Spielberg',      77,   'Estados Unidos'),
+( 3, 'Quentin Tarantino',     61,   'Estados Unidos'),
+( 4, 'Martin Scorsese',       82,   'Estados Unidos'),
+( 5, 'James Cameron',         70,   'Canadá'),
+( 6, 'Ridley Scott',          86,   'Reino Unido'),
+( 7, 'Denis Villeneuve',      57,   'Canadá'),
+( 8, 'Guillermo del Toro',    60,   'México'),
+( 9, 'Alfonso Cuarón',        62,   'México'),
+(10, 'Bong Joon-ho',          55,   'Corea del Sur'),
+(11, 'Pedro Almodóvar',       75,   'España'),
+(12, 'Alejandro G. Iñárritu', 57,   'México'),
+(13, 'Francis Ford Coppola',  85,   'Estados Unidos'),
+(14, 'David Lynch',           78,   'Estados Unidos'),
+(15, 'David Fincher',         62,   'Estados Unidos'),
+(16, 'Wes Anderson',          55,   'Estados Unidos'),
+(17, 'Tim Burton',            66,   'Estados Unidos'),
+(18, 'Robert Zemeckis',       73,   'Estados Unidos'),
+(19, 'Ron Howard',            71,   'Estados Unidos'),
+(20, 'Darren Aronofsky',      55,   'Estados Unidos');
+
+
+-- =========================
+-- 11. PROYECCION
+-- =========================
+
+
+INSERT INTO Proyeccion (id_proyeccion, fecha_proyeccion, id_sala, id_pelicula) VALUES
+( 1,'2026-03-09 14:00', 1, 1),( 2,'2026-03-09 17:00',21, 2),
+( 3,'2026-03-09 20:00', 2, 3),( 4,'2026-03-10 14:00',22, 4),
+( 5,'2026-03-10 17:00', 3, 5),( 6,'2026-03-10 20:00',23, 6),
+( 7,'2026-03-11 14:00', 4, 7),( 8,'2026-03-11 17:00',24, 8),
+( 9,'2026-03-11 20:00', 5, 9),(10,'2026-03-12 14:00',25,10),
+(11,'2026-03-12 17:00', 6,11),(12,'2026-03-12 20:00',26,12),
+(13,'2026-03-13 14:00', 7,13),(14,'2026-03-13 17:00',27,14),
+(15,'2026-03-13 20:00', 8,15),(16,'2026-03-14 14:00',28,16),
+(17,'2026-03-14 17:00', 9,17),(18,'2026-03-14 20:00',29,18),
+(19,'2026-03-15 14:00',10,19),(20,'2026-03-15 17:00',30,20),
+(21,'2026-03-15 20:00', 1, 1),(22,'2026-03-16 14:00',21, 5),
+(23,'2026-03-16 17:00', 2,10),(24,'2026-03-16 20:00',22,14),
+(25,'2026-03-17 14:00', 3,17);
+
+
+-- ==================================
+-- 12. PROTAGONIZA (PELICULA Y ACTOR)
+-- ==================================
+
+
+INSERT INTO dbo.Protagoniza (id_pelicula, id_actor) VALUES
+( 1, 1),( 2, 2),( 3, 5),( 4, 6),( 5, 3),
+( 6, 4),( 7,20),( 8, 1),( 9, 7),(10, 8),
+(11, 9),(12,10),(13,11),(14,12),(15,17),
+(16,18),(17,13),(18,14),(19,19),(20,15);
+
+
+-- ==================================
+-- 13. DIRIGE (PELICULA Y DIRECTOR)
+-- ==================================
+
+
+INSERT INTO dbo.Dirige (id_director, id_pelicula) VALUES
+( 1, 1),( 1, 2),( 2, 3),( 2, 4),( 3, 5),
+( 3, 6),( 4, 7),( 5, 8),( 6, 9),( 7,10),
+( 7,11),( 8,12),( 9,13),(10,14),(11,15),
+(12,16),(13,17),(15,18),(15,20),(16,19),
+(20,21),(17,22);
+
+
+-- ==============================================
+-- 14. ENCARGADO DE (ADMINISTRADOR Y PUNTO VENTA)
+-- ==============================================
+
+
+INSERT INTO EncargadoDe (id_empleado, id_punto_venta) VALUES
+( 1, 1),( 3, 2),( 5, 3),( 7, 4),( 9, 5),
+(11, 6),(13, 7),(15, 8),(17, 9),(19,10),
+(21,11),(23,12),(25,13),(27,14),(29,15),
+(31,16),(33,17),(35,18),(37,19),(39,20);
