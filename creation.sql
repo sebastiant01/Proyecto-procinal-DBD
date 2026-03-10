@@ -1,4 +1,4 @@
-﻿CREATE DATABASE Procinal;
+CREATE DATABASE Procinal;
 GO
 
 USE Procinal;
@@ -516,3 +516,184 @@ INSERT INTO EncargadoDe (id_empleado, id_punto_venta) VALUES
 (11, 6),(13, 7),(15, 8),(17, 9),(19,10),
 (21,11),(23,12),(25,13),(27,14),(29,15),
 (31,16),(33,17),(35,18),(37,19),(39,20);
+
+--Géneros con más de una proyección programada
+USE Procinal;
+GO
+SELECT
+    P.genero,
+    COUNT(PR.id_proyeccion)  AS total_proyecciones,
+    AVG(P.duracion)          AS duracion_promedio_min
+FROM Pelicula P
+    INNER JOIN Proyeccion PR ON PR.id_pelicula = P.id_pelicula
+WHERE P.genero IS NOT NULL
+GROUP BY P.genero
+HAVING COUNT(PR.id_proyeccion) > 1
+ORDER BY total_proyecciones DESC;
+
+---τ_(total DESC) (σ_(total > 1) (γ_(genero; COUNT(id_proyeccion)→total, AVG(duracion)→prom) (σ_(genero≠NULL)(Pelicula) ⋈ Proyeccion)))
+
+---Directores con más de una película dirigida
+USE Procinal;
+GO
+SELECT
+    D.nombre                 AS director,
+    D.pais_procedencia,
+    COUNT(DG.id_pelicula)    AS peliculas_dirigidas
+FROM Director D
+    INNER JOIN Dirige DG ON DG.id_director = D.id_director
+WHERE D.pais_procedencia IS NOT NULL
+GROUP BY D.nombre, D.pais_procedencia
+HAVING COUNT(DG.id_pelicula) > 1
+ORDER BY peliculas_dirigidas DESC, D.nombre ASC;
+---τ_(total DESC, nombre ASC) (σ_(total > 1) (γ_(nombre, pais; COUNT(id_pelicula)→total) (σ_(pais≠NULL)(Director) ⋈ Dirige)))
+
+---Capacidad promedio de salas 2D por ciudad (promedio > 115)
+USE Procinal;
+GO
+SELECT
+    C.nombre            AS ciudad,
+    COUNT(S2.id_sala)   AS total_salas_2D,
+    AVG(S2.capacidad)   AS capacidad_promedio
+FROM Ciudad C
+    INNER JOIN PuntoVenta PV ON PV.id_ciudad      = C.id_ciudad
+    INNER JOIN Sala S        ON S.id_punto_venta  = PV.id_punto_venta
+    INNER JOIN Sala2D S2     ON S2.id_sala         = S.id_sala
+GROUP BY C.nombre
+HAVING AVG(S2.capacidad) > 115
+ORDER BY capacidad_promedio DESC;
+---T1 ← Ciudad ⋈ PuntoVenta ⋈ Sala ⋈ Sala2D
+--T2 ← γ_(C.nombre; COUNT(id_sala)→total, AVG(capacidad)→prom) (T1)
+--Resultado ← τ_(prom DESC) (σ_(prom > 115) (T2))
+
+--Puntos de venta con costo VIP promedio mayor a $78.000
+USE Procinal;
+GO
+SELECT
+    PV.nombre                AS punto_venta,
+    C.nombre                 AS ciudad,
+    COUNT(SV.id_sala)        AS salas_vip,
+    AVG(SV.costo_por_hora)   AS costo_promedio_hora
+FROM PuntoVenta PV
+    INNER JOIN Ciudad C    ON C.id_ciudad      = PV.id_ciudad
+    INNER JOIN Sala S      ON S.id_punto_venta = PV.id_punto_venta
+    INNER JOIN SalaVIP SV  ON SV.id_sala       = S.id_sala
+WHERE SV.costo_por_hora > 0
+GROUP BY PV.nombre, C.nombre
+HAVING AVG(SV.costo_por_hora) > 78000
+ORDER BY costo_promedio_hora DESC;
+
+--T1 ← σ_(costo>0) (PuntoVenta ⋈ Ciudad ⋈ Sala ⋈ SalaVIP)
+--T2 ← γ_(PV.nombre, C.nombre; COUNT→salas, AVG(costo)→prom) (T1)
+
+
+--Administradores con sueldo mayor al promedio general
+
+USE Procinal;
+GO
+SELECT
+    E.nombre        AS empleado,
+    PV.nombre       AS punto_venta,
+    A.sueldo,
+    A.numero_hijos
+FROM Empleado E
+    INNER JOIN Administrador A ON A.id_empleado     = E.id_empleado
+    INNER JOIN PuntoVenta PV   ON PV.id_punto_venta = E.id_punto_venta
+WHERE A.sueldo > (SELECT AVG(sueldo) FROM Administrador)
+GROUP BY E.nombre, PV.nombre, A.sueldo, A.numero_hijos
+HAVING A.sueldo = MAX(A.sueldo)
+ORDER BY A.sueldo DESC;
+
+--Prom ← γ_(AVG(sueldo)→media) (Administrador)
+--T1 ← Empleado ⋈ Administrador ⋈ PuntoVenta
+--T2 ← σ_(sueldo > Prom.media) (T1)
+--Resultado ← τ_(sueldo DESC) (π_(nombre, PV.nombre, sueldo, numero_hijos) (T2))
+
+-- Inner Join (Películas y sus actores protagonistas)
+USE Procinal;
+GO
+SELECT
+    P.titulo        AS pelicula,
+    P.genero,
+    A.nombre        AS actor_protagonista,
+    A.edad          AS edad_actor
+FROM Pelicula P
+    INNER JOIN Protagoniza PR ON PR.id_pelicula = P.id_pelicula
+    INNER JOIN Actor A        ON A.id_actor     = PR.id_actor
+ORDER BY P.titulo;
+ 
+--π_(P.titulo, P.genero, A.nombre, A.edad)
+--    (Pelicula P ⋈_(P.id_pelicula=PR.id_pelicula) Protagoniza PR
+--        ⋈_(PR.id_actor=A.id_actor) Actor A)
+
+--Left Join (Todas las ciudades, aunque no tengan sede Procinal)
+USE Procinal;
+GO
+SELECT
+    C.nombre            AS ciudad,
+    C.zona_geografica,
+    PV.nombre           AS punto_venta,
+    PV.direccion
+FROM Ciudad C
+    LEFT JOIN PuntoVenta PV ON PV.id_ciudad = C.id_ciudad
+ORDER BY C.nombre;
+ 
+--π_(C.nombre, C.zona_geografica, PV.nombre, PV.direccion)
+--    (Ciudad C ⟕_(C.id_ciudad=PV.id_ciudad) PuntoVenta PV)
+
+---Right Join (Todos los puntos de venta y su administrador encargado)
+USE Procinal;
+GO
+SELECT
+    E.nombre                AS administrador,
+    A.sueldo,
+    PV.nombre               AS punto_venta,
+    C.nombre                AS ciudad
+FROM Empleado E
+    INNER JOIN Administrador A  ON A.id_empleado    = E.id_empleado
+    RIGHT JOIN EncargadoDe ED   ON ED.id_empleado   = A.id_empleado
+    RIGHT JOIN PuntoVenta PV    ON PV.id_punto_venta = ED.id_punto_venta
+    INNER JOIN Ciudad C         ON C.id_ciudad      = PV.id_ciudad
+ORDER BY PV.nombre;
+
+--π_(E.nombre, A.sueldo, PV.nombre, C.nombre)
+--    ((Empleado E ⋈ Administrador A) ⟖_(A.id_empleado=ED.id_empleado) EncargadoDe ED
+--        ⟖_(ED.id_punto_venta=PV.id_punto_venta) PuntoVenta PV ⋈ Ciudad C)
+ 
+
+-- Full Join (Todas las películas y todas las proyecciones)
+USE Procinal;
+GO
+SELECT
+    P.titulo            AS pelicula,
+    P.genero,
+    PR.id_proyeccion,
+    PR.fecha_proyeccion
+FROM Pelicula P
+    FULL JOIN Proyeccion PR ON PR.id_pelicula = P.id_pelicula
+ORDER BY P.titulo, PR.fecha_proyeccion;
+ 
+--π_(P.titulo, P.genero, PR.id_proyeccion, PR.fecha_proyeccion)
+--    (Pelicula P ⟗_(P.id_pelicula=PR.id_pelicula) Proyeccion PR)
+
+
+---Cross Join (Combinación total entre géneros y zonas geográficas)
+USE Procinal;
+GO
+SELECT
+    G.genero,
+    Z.zona_geografica,
+    CONCAT(G.genero, ' - ', Z.zona_geografica) AS combinacion
+FROM
+    (SELECT DISTINCT genero
+     FROM Pelicula
+     WHERE genero IS NOT NULL) G
+    CROSS JOIN
+    (SELECT DISTINCT zona_geografica
+     FROM Ciudad
+     WHERE zona_geografica IS NOT NULL) Z
+ORDER BY G.genero, Z.zona_geografica;
+ 
+--G ← π_(genero) (σ_(genero≠NULL) (Pelicula))
+--Z ← π_(zona_geografica) (σ_(zona_geografica≠NULL) (Ciudad))
+--Resultado ← τ_(genero, zona_geografica) (G × Z)
