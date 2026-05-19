@@ -17,6 +17,8 @@ BEGIN
 END;
 GO
 
+-- Trigger AFTER
+
 /* Crear o actualizar el trigger */
 CREATE OR ALTER TRIGGER dbo.trg_AuditoriaInsertProyeccion
 ON dbo.Proyeccion
@@ -61,3 +63,20 @@ GO
 
 SELECT * FROM dbo.AuditoriaProyeccion;
 GO
+
+-- Trigger INSTEAD OF
+
+CREATE OR ALTER TRIGGER trg_ImpedirEliminarAdministrador
+ON dbo.Empleado
+INSTEAD OF DELETE
+AS
+BEGIN
+    IF EXISTS
+    (
+        SELECT 1 FROM deleted
+        WHERE cargo = 'Administrador'
+    )
+    BEGIN
+        PRINT 'Operación cancelada: no se puede eliminar un administrador directamente.';
+    END
+END;

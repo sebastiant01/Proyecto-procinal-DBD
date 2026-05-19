@@ -1,6 +1,8 @@
 -- =============================================================================
 -- ELIMINACIÓN DE DATOS Y ESTRUCTURA
 -- =============================================================================
+USE Procinal
+GO
 
 -- Eliminación de un registro específico de la tabla Actor
 -- Se elimina el actor con id_actor = 16 (Tom Hanks) - sin películas asignadas en Protagoniza
@@ -12,6 +14,17 @@ GO
 ALTER TABLE dbo.Ciudad 
 DROP COLUMN zona_geografica;
 GO
+
+-- Eliminación con instrucciones especiales
+
+-- Borra la tabla junto sus datos (la ejecución dependerá si tuvo FKs o Check Constraints en esta)
+DROP TABLE dbo.CIUDAD_PRUEBA;
+
+-- Borra la BD
+DROP DATABASE Procinal;
+
+-- Borra TODOS los registros de la tabla
+TRUNCATE TABLE dbo.Ciudad;
 
 -- =============================================================================
 -- VERIFICACIONES DE ELIMINACIÓN

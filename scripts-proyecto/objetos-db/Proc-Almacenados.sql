@@ -14,12 +14,12 @@ BEGIN
         P.genero,
         PR.fecha_proyeccion
     FROM dbo.PuntoVenta AS PV
-    INNER JOIN dbo.Sala AS S
-        ON PV.id_punto_venta = S.id_punto_venta
-    INNER JOIN dbo.Proyeccion AS PR
-        ON S.id_sala = PR.id_sala
-    INNER JOIN dbo.Pelicula AS P
-        ON PR.id_pelicula = P.id_pelicula
+        INNER JOIN dbo.Sala AS S
+            ON PV.id_punto_venta = S.id_punto_venta
+        INNER JOIN dbo.Proyeccion AS PR
+            ON S.id_sala = PR.id_sala
+        INNER JOIN dbo.Pelicula AS P
+            ON PR.id_pelicula = P.id_pelicula
     WHERE PV.id_punto_venta = @id_punto_venta
     ORDER BY PR.fecha_proyeccion DESC;
 END;

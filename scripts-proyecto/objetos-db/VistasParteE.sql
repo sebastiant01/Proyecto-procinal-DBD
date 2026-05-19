@@ -11,17 +11,17 @@ GO
 -- directores y el punto de venta. Facilita la consulta sin hacer los JOINs.
 -- -----------------------------------------------------------------------------
 CREATE OR ALTER VIEW vw_CarteleraCompleta AS
-SELECT 
-    P.titulo AS Pelicula,
-    D.nombre AS Director,
-    S.numero_sala AS Sala,
-    PR.fecha_proyeccion AS Horario,
-    PV.nombre AS Punto_Venta
-FROM Proyeccion PR
-INNER JOIN Pelicula P ON PR.id_pelicula = P.id_pelicula
-INNER JOIN Director D ON P.id_director = D.id_director
-INNER JOIN Sala S ON PR.id_sala = S.id_sala
-INNER JOIN PuntoVenta PV ON S.id_punto_venta = PV.id_punto_venta;
+    SELECT 
+        P.titulo AS Pelicula,
+        D.nombre AS Director,
+        S.numero_sala AS Sala,
+        PR.fecha_proyeccion AS Horario,
+        PV.nombre AS Punto_Venta
+    FROM Proyeccion PR
+    INNER JOIN Pelicula P ON PR.id_pelicula = P.id_pelicula
+    INNER JOIN Director D ON P.id_director = D.id_director
+    INNER JOIN Sala S ON PR.id_sala = S.id_sala
+    INNER JOIN PuntoVenta PV ON S.id_punto_venta = PV.id_punto_venta;
 GO
 
 -- Ejemplo de uso de la vista estándar
@@ -40,17 +40,17 @@ GO
 CREATE OR ALTER VIEW vw_TotalSalasPorPuntoVenta 
 WITH SCHEMABINDING 
 AS
-SELECT 
-    id_punto_venta,
-    COUNT_BIG(*) AS Total_Salas
-FROM dbo.Sala
-GROUP BY id_punto_venta;
-GO
+    SELECT 
+        id_punto_venta,
+        COUNT_BIG(*) AS Total_Salas
+    FROM dbo.Sala
+    GROUP BY id_punto_venta;
+    GO
 
--- Creación del índice clúster único para materializar la vista físicamente
--- en el disco.
-CREATE UNIQUE CLUSTERED INDEX UQ_vw_TotalSalas 
-ON vw_TotalSalasPorPuntoVenta (id_punto_venta);
+    -- Creación del índice clúster único para materializar la vista físicamente
+    -- en el disco.
+    CREATE UNIQUE CLUSTERED INDEX UQ_vw_TotalSalas 
+    ON vw_TotalSalasPorPuntoVenta (id_punto_venta);
 GO
 
 -- Ejemplo de uso de la vista indexada
